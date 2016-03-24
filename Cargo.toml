@@ -1,0 +1,12 @@
+[package]
+name = "blis-experimental-sys"
+version = "0.1.0"
+authors = [
+  "bluss",
+]
+publish = false
+build = "build.rs"
+
+[features]
+ccache = []
+system = []
