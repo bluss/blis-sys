@@ -1,8 +1,11 @@
 #![allow(non_camel_case_types)]
 
 
+/// Integer type
 pub type gint_t = i64;
+/// Matrix dimension type
 pub type dim_t = gint_t;
+/// Stide type
 pub type inc_t = gint_t;
 
 // Info functions
@@ -99,6 +102,14 @@ fn test() {
 }
 
 #[test]
+fn sanity_check() {
+    use std::mem::size_of;
+    unsafe {
+        assert_eq!(size_of::<gint_t>() * 8, bli_info_get_int_type_size() as usize);
+    }
+}
+
+#[test]
 fn addv() {
     let mut x = [2.; 16];
     let mut y = [0.; 16];
@@ -120,7 +131,7 @@ fn addv() {
 #[test]
 fn gemm() {
     let mut a = [2.; 16];
-    let mut b = [1.; 16];
+    let b = [1.; 16];
     let mut c = [0.; 16];
     for (i, elt) in (&mut a[..]).into_iter().enumerate() {
         *elt = i as f32;
