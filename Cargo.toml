@@ -4,6 +4,8 @@ version = "0.1.0"
 authors = [
   "bluss",
 ]
+license = "BSD-3-Clause"
+
 publish = false
 build = "build.rs"
 
