@@ -18,6 +18,8 @@ Configuration Caveats
 + BLIS is far from complete, unimplemented microkernels fall back to
   the reference implementation.
 + `BLIS API Quick Reference`__
++ **MUST CALL** `bli_init()` before any linear algebra functions are called.
+  `bli_init()` is thread safe and only does actual work once.
 + Help is needed to support Windows
 
 __ https://github.com/flame/blis/wiki/BLISAPIQuickReference
