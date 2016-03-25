@@ -15,9 +15,22 @@ extern {
     pub fn bli_info_get_int_type_size() -> gint_t;
 }
 
+/// Error enum.
+///
+/// Actual C enum has more variants.
+#[repr(C)]
+pub enum err_t {
+    BLIS_SUCCESS = -1,
+    BLIS_FAILURE = -2,
+    #[doc(hidden)]
+    __INCOMPLETE = -140,
+}
+
 // Initialization
 extern {
-    pub fn bli_init();
+    pub fn bli_init() -> err_t;
+    pub fn bli_finalize() -> err_t;
+    pub fn bli_is_initialized() -> gint_t;
 }
 
 const BLIS_TRANS_SHIFT: usize = 3;
