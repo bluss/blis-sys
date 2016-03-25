@@ -20,7 +20,7 @@ script:
       travis-cargo doc -- --features=system
 after_success:
   # upload the documentation (GH_TOKEN from env)
-  - travis-cargo --only nightly doc-upload -- --features=system
+  - travis-cargo --only nightly doc-upload
 
 env:
   global:
