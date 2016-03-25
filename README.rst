@@ -14,7 +14,13 @@ Configuration Caveats
 + Uses configuration `auto` from BLIS's configure script, which will try
   to pick the applicable microarchtechture
 + Always uses pthreads.
++ Compiler flags are set to optimization, but not tuned
++ BLIS is far from complete, unimplemented microkernels fall back to
+  the reference implementation.
++ `BLIS API Quick Reference`__
 + Help is needed to support Windows
+
+__ https://github.com/flame/blis/wiki/BLISAPIQuickReference
 
 Crate Feature Flags
 ===================
