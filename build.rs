@@ -7,11 +7,9 @@ const BLIS_SRC: &'static str = "blis";
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed={}", BLIS_SRC);
-    //let kind = if var("CARGO_FEATURE_STATIC_OPENBLAS").is_ok() { "static" } else { "dylib" };
     let use_ccache = cfg!(feature = "ccache");
     let plat = var("RBLIS_CONFIG").unwrap_or(String::from("auto"));
     let kind = "static";
-    //let kind = "dylib";
 
     let crate_home = PathBuf::from(&var("CARGO_MANIFEST_DIR").unwrap());
     let blis_source = crate_home.join(BLIS_SRC);
