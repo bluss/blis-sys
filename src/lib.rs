@@ -35,6 +35,10 @@ extern {
 
 const BLIS_TRANS_SHIFT: usize = 3;
 const BLIS_CONJ_SHIFT: usize = 4;
+const BLIS_UPLO_SHIFT: usize = 5;
+const BLIS_UPPER_SHIFT: usize = 5;
+const BLIS_DIAG_SHIFT: usize = 6;
+const BLIS_LOWER_SHIFT: usize = 7;
 
 /// Conjugation enum
 #[repr(C)]
@@ -52,6 +56,15 @@ pub enum trans_t {
     BLIS_TRANSPOSE = 1 << BLIS_TRANS_SHIFT,
     BLIS_CONJ_NO_TRANSPOSE = 1 << BLIS_CONJ_SHIFT,
     BLIS_CONJ_TRANSPOSE = 1 << BLIS_TRANS_SHIFT | 1 << BLIS_CONJ_SHIFT
+}
+
+/// Triangle half enum
+#[repr(C)]
+pub enum uplo_t {
+    BLIS_ZEROS = 0,
+    BLIS_LOWER = 1 << BLIS_LOWER_SHIFT | 1 << BLIS_DIAG_SHIFT,
+    BLIS_UPPER = 1 << BLIS_UPPER_SHIFT | 1 << BLIS_DIAG_SHIFT,
+    BLIS_DENSE = 7 << BLIS_UPLO_SHIFT,
 }
 
 pub use self::trans_t::*;
