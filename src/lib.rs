@@ -5,7 +5,7 @@
 pub type gint_t = i64;
 /// Matrix dimension type
 pub type dim_t = gint_t;
-/// Stide type
+/// Stride type
 pub type inc_t = gint_t;
 
 // Info functions
@@ -58,47 +58,56 @@ pub use self::trans_t::*;
 
 // Level 1v
 extern {
+    /// y := y + conjx(x)
     pub fn bli_saddv(conjx: conj_t,
                      m: dim_t,
                      x: *const f32, incx: inc_t,
                      y: *mut f32, incy: inc_t );
+    /// y := y + conjx(x)
+    pub fn bli_daddv(conjx: conj_t,
+                     m: dim_t,
+                     x: *const f64, incx: inc_t,
+                     y: *mut f64, incy: inc_t );
     /// rho := conjx(x)^T * conjy(y)
     pub fn bli_sdotv(conjx: conj_t,
                      conjy: conj_t,
                      m: dim_t,
                      x: *const f32, incx: inc_t,
                      y: *const f32, incy: inc_t,
-                     rho: *const f32);
+                     rho: *mut f32);
+    /// rho := conjx(x)^T * conjy(y)
     pub fn bli_ddotv(conjx: conj_t,
                      conjy: conj_t,
                      m: dim_t,
                      x: *const f64, incx: inc_t,
                      y: *const f64, incy: inc_t,
-                     rho: *const f64);
+                     rho: *mut f64);
 }
 
 // Level 3
 extern {
+    /// C := beta * C + alpha * transa(A) * transb(B)
     pub fn bli_sgemm(transa: trans_t,
                      transb: trans_t,
-                     m: dim_t   ,
-                     n: dim_t   ,
-                     k: dim_t   ,
-                     alpha: *const f32  ,
-                     a: *const f32  , rsa: inc_t , csa: inc_t ,
-                     b: *const f32  , rsb: inc_t , csb: inc_t ,
-                     beta: *const f32  ,
-                     c: *mut f32  , rsc: inc_t , csc: inc_t );
+                     m: dim_t,
+                     n: dim_t,
+                     k: dim_t,
+                     alpha: *const f32,
+                     a: *const f32, rsa: inc_t, csa: inc_t,
+                     b: *const f32, rsb: inc_t, csb: inc_t,
+                     beta: *const f32,
+                     c: *mut f32, rsc: inc_t, csc: inc_t);
+    /// C := beta * C + alpha * transa(A) * transb(B)
     pub fn bli_dgemm(transa: trans_t,
                      transb: trans_t,
-                     m: dim_t   ,
-                     n: dim_t   ,
-                     k: dim_t   ,
-                     alpha: *const f64  ,
-                     a: *const f64  , rsa: inc_t , csa: inc_t ,
-                     b: *const f64  , rsb: inc_t , csb: inc_t ,
-                     beta: *const f64  ,
-                     c: *mut f64  , rsc: inc_t , csc: inc_t );
+                     m: dim_t,
+                     n: dim_t,
+                     k: dim_t,
+                     alpha: *const f64,
+                     a: *const f64, rsa: inc_t, csa: inc_t,
+                     b: *const f64, rsb: inc_t, csb: inc_t,
+                     beta: *const f64,
+                     c: *mut f64, rsc: inc_t, csc: inc_t);
 }
 
 #[test]
