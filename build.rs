@@ -20,20 +20,8 @@ fn main() {
         println!("cargo:rustc-link-lib={}=blis", kind);
         return;
     }
-
-    // remove OPENMP from the configuration
-    // find ./config -name "bli_config.h" -exec sed -i -e 's/#define BLIS_ENABLE_OPENMP//g' {} \;
-    run(Command::new("find")
-            .arg(&blis_source.join("config"))
-            .args(&["-name", "bli_config.h", "-exec",
-                  "sed", "-i", "-e", "s/#define BLIS_ENABLE_OPENMP//g", "{}", ";"])
-        );
-    run(Command::new("find")
-            .arg(&blis_source.join("config"))
-            .args(&["-exec",
-                  "sed", "-i", "-e", "s/-fopenmp//g", "{}", ";"])
-        );
-
+    
+    // always use pthreads so that it is thread safe to call
 
     remove_var("TARGET");
     
@@ -41,18 +29,17 @@ fn main() {
     run(Command::new(&blis_source.join("configure"))
                 .arg("-p") // set prefix to install to
                 .arg(&output)
+                .args(&["-t", "pthreads"])
                 .arg(&plat)
                 .current_dir(&output));
 
-    let mut ccache_arg = &["CC=ccache gcc", "CC_VENDOR=gcc"][..];
+    let mut ccache_arg = &["CC=ccache gcc"][..];
     if !use_ccache {
         ccache_arg = &[];
     }
-    let make_args = &["CMISCFLAGS=-DBLIS_ENABLE_PTHREADS -std=c99 -pthread"];
     run(Command::new("make")
                 .arg(&format!("-j{}", var("NUM_JOBS").unwrap()))
                 .args(ccache_arg)
-                .args(make_args)
                 .current_dir(&output));
 
     run(Command::new("make")
