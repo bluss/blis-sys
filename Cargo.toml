@@ -12,5 +12,4 @@ publish = false
 build = "build.rs"
 
 [features]
-ccache = []
 system = []

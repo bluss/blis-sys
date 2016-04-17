@@ -7,7 +7,6 @@ const BLIS_SRC: &'static str = "blis";
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed={}", BLIS_SRC);
-    let use_ccache = cfg!(feature = "ccache");
     let plat = var("RBLIS_CONFIG").unwrap_or(String::from("auto"));
     let kind = "static";
 
@@ -33,13 +32,8 @@ fn main() {
                 .arg(&plat)
                 .current_dir(&output));
 
-    let mut ccache_arg = &["CC=ccache gcc"][..];
-    if !use_ccache {
-        ccache_arg = &[];
-    }
     run(Command::new("make")
                 .arg(&format!("-j{}", var("NUM_JOBS").unwrap()))
-                .args(ccache_arg)
                 .current_dir(&output));
 
     run(Command::new("make")
