@@ -5,6 +5,8 @@ authors = [
   "bluss",
 ]
 license = "BSD-3-Clause"
+description = "Experimental bindings for BLIS linear algebra package"
+repository = "github.com/"
 
 publish = false
 build = "build.rs"
