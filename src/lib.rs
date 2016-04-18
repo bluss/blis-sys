@@ -69,32 +69,42 @@ pub enum uplo_t {
 
 pub use self::trans_t::*;
 
+/// Opaque context type.
+///
+/// You can safely pass null for each *mut cntx_t param
+#[repr(C)]
+pub struct cntx_t(i32);
+
 // Level 1v
 extern {
     /// y := y + conjx(x)
     pub fn bli_saddv(conjx: conj_t,
                      m: dim_t,
                      x: *const f32, incx: inc_t,
-                     y: *mut f32, incy: inc_t );
+                     y: *mut f32, incy: inc_t,
+                     cntx: *mut cntx_t);
     /// y := y + conjx(x)
     pub fn bli_daddv(conjx: conj_t,
                      m: dim_t,
                      x: *const f64, incx: inc_t,
-                     y: *mut f64, incy: inc_t );
+                     y: *mut f64, incy: inc_t,
+                     cntx: *mut cntx_t);
     /// rho := conjx(x)^T * conjy(y)
     pub fn bli_sdotv(conjx: conj_t,
                      conjy: conj_t,
                      m: dim_t,
                      x: *const f32, incx: inc_t,
                      y: *const f32, incy: inc_t,
-                     rho: *mut f32);
+                     rho: *mut f32,
+                     cntx: *mut cntx_t);
     /// rho := conjx(x)^T * conjy(y)
     pub fn bli_ddotv(conjx: conj_t,
                      conjy: conj_t,
                      m: dim_t,
                      x: *const f64, incx: inc_t,
                      y: *const f64, incy: inc_t,
-                     rho: *mut f64);
+                     rho: *mut f64,
+                     cntx: *mut cntx_t);
 }
 
 // Level 3
@@ -109,7 +119,8 @@ extern {
                      a: *const f32, rsa: inc_t, csa: inc_t,
                      b: *const f32, rsb: inc_t, csb: inc_t,
                      beta: *const f32,
-                     c: *mut f32, rsc: inc_t, csc: inc_t);
+                     c: *mut f32, rsc: inc_t, csc: inc_t,
+                     cntx: *mut cntx_t);
     /// C := beta * C + alpha * transa(A) * transb(B)
     pub fn bli_dgemm(transa: trans_t,
                      transb: trans_t,
@@ -120,7 +131,8 @@ extern {
                      a: *const f64, rsa: inc_t, csa: inc_t,
                      b: *const f64, rsb: inc_t, csb: inc_t,
                      beta: *const f64,
-                     c: *mut f64, rsc: inc_t, csc: inc_t);
+                     c: *mut f64, rsc: inc_t, csc: inc_t,
+                     cntx: *mut cntx_t);
 }
 
 #[test]
@@ -146,6 +158,7 @@ fn sanity_check() {
 
 #[test]
 fn addv() {
+    use std::ptr::null_mut;
     let mut x = [2.; 16];
     let mut y = [0.; 16];
     for (i, elt) in (&mut x[..]).into_iter().enumerate() {
@@ -157,7 +170,8 @@ fn addv() {
         bli_saddv(BLIS_NO_CONJUGATE,
                   x.len() as gint_t / 2,
                   x.as_ptr().offset(15), -2,
-                  y.as_mut_ptr(), 1);
+                  y.as_mut_ptr(), 1,
+                  null_mut());
         println!("{:?}\n{:?}", x, y);
         //assert_eq!(&x, &y);
     }
@@ -165,6 +179,7 @@ fn addv() {
 
 #[test]
 fn gemm() {
+    use std::ptr::null_mut;
     let mut a = [2.; 16];
     let b = [1.; 16];
     let mut c = [0.; 16];
@@ -185,7 +200,8 @@ fn gemm() {
                  a.as_ptr(), 4, 1,
                  b.as_ptr(), 4, 1,
                  &0.,
-                 c.as_mut_ptr(), 4, 1);
+                 c.as_mut_ptr(), 4, 1,
+                 null_mut());
 
         println!("{:?}\n{:?}\n{:?}", a, b, c);
         assert_eq!(&c, &res);
@@ -202,7 +218,8 @@ fn gemm() {
                  a.as_ptr().offset(12), -4, 1,
                  b.as_ptr(), 4, 1,
                  &0.,
-                 c.as_mut_ptr(), 4, 1);
+                 c.as_mut_ptr(), 4, 1,
+                 null_mut());
 
         println!("{:?}\n{:?}\n{:?}", a, b, c);
     }
