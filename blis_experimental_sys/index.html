@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `blis_experimental_sys` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, blis_experimental_sys">
+
+    <title>blis_experimental_sys - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'blis_experimental_sys', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>blis_experimental_sys</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-0' class='srclink' href='../src/blis_experimental_sys/src/lib.rs.html#1-226' title='goto source code'>[src]</a></span></h1>
+<h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use self::<a class='enum' href='../blis_experimental_sys/enum.conj_t.html' title='blis_experimental_sys::conj_t'>conj_t</a>::*;</code></td></tr><tr><td><code>pub use self::<a class='enum' href='../blis_experimental_sys/enum.trans_t.html' title='blis_experimental_sys::trans_t'>trans_t</a>::*;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.cntx_t.html'
+                                  title='blis_experimental_sys::cntx_t'>cntx_t</a></td>
+                           <td class='docblock short'>
+                                <p>Opaque context type.</p>
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.conj_t.html'
+                                  title='blis_experimental_sys::conj_t'>conj_t</a></td>
+                           <td class='docblock short'>
+                                <p>Conjugation enum</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.err_t.html'
+                                  title='blis_experimental_sys::err_t'>err_t</a></td>
+                           <td class='docblock short'>
+                                <p>Error enum.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.trans_t.html'
+                                  title='blis_experimental_sys::trans_t'>trans_t</a></td>
+                           <td class='docblock short'>
+                                <p>Transpose enum</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.uplo_t.html'
+                                  title='blis_experimental_sys::uplo_t'>uplo_t</a></td>
+                           <td class='docblock short'>
+                                <p>Triangle half enum</p>
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_daddv.html'
+                                  title='blis_experimental_sys::bli_daddv'>bli_daddv</a></td>
+                           <td class='docblock short'>
+                                <p>y := y + conjx(x)</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_ddotv.html'
+                                  title='blis_experimental_sys::bli_ddotv'>bli_ddotv</a></td>
+                           <td class='docblock short'>
+                                <p>rho := conjx(x)<sup>T</sup> * conjy(y)</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_dgemm.html'
+                                  title='blis_experimental_sys::bli_dgemm'>bli_dgemm</a></td>
+                           <td class='docblock short'>
+                                <p>C := beta * C + alpha * transa(A) * transb(B)</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_finalize.html'
+                                  title='blis_experimental_sys::bli_finalize'>bli_finalize</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_info_get_int_type_size.html'
+                                  title='blis_experimental_sys::bli_info_get_int_type_size'>bli_info_get_int_type_size</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_info_get_int_type_size_str.html'
+                                  title='blis_experimental_sys::bli_info_get_int_type_size_str'>bli_info_get_int_type_size_str</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_info_get_version_str.html'
+                                  title='blis_experimental_sys::bli_info_get_version_str'>bli_info_get_version_str</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_init.html'
+                                  title='blis_experimental_sys::bli_init'>bli_init</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_is_initialized.html'
+                                  title='blis_experimental_sys::bli_is_initialized'>bli_is_initialized</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_saddv.html'
+                                  title='blis_experimental_sys::bli_saddv'>bli_saddv</a></td>
+                           <td class='docblock short'>
+                                <p>y := y + conjx(x)</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_sdotv.html'
+                                  title='blis_experimental_sys::bli_sdotv'>bli_sdotv</a></td>
+                           <td class='docblock short'>
+                                <p>rho := conjx(x)<sup>T</sup> * conjy(y)</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.bli_sgemm.html'
+                                  title='blis_experimental_sys::bli_sgemm'>bli_sgemm</a></td>
+                           <td class='docblock short'>
+                                <p>C := beta * C + alpha * transa(A) * transb(B)</p>
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.dim_t.html'
+                                  title='blis_experimental_sys::dim_t'>dim_t</a></td>
+                           <td class='docblock short'>
+                                <p>Matrix dimension type</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.gint_t.html'
+                                  title='blis_experimental_sys::gint_t'>gint_t</a></td>
+                           <td class='docblock short'>
+                                <p>Integer type</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.inc_t.html'
+                                  title='blis_experimental_sys::inc_t'>inc_t</a></td>
+                           <td class='docblock short'>
+                                <p>Stride type</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "blis_experimental_sys";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
